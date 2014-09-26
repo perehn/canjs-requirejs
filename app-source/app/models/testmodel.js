@@ -2,7 +2,7 @@ define(['common/common'],
 function(){
 
 
-BaseModel.extend('TestModel',
+can.Model.extend('TestModel',
 /* @Static */
 {
 	

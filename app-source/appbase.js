@@ -6,18 +6,21 @@ requirejs.config({
     'jquery':                   '../bower_components/jquery/dist/jquery',
     'can':						'../bower_components/canjs/amd/can',
     
-    'text':						'common/text',
-    'stache':					'common/stache-modded'
+    'text':						'../bower_components/text/text',
+ 
+    'canjs-commons':			'../bower_components/canjs-commons/canjs-commons',
+    'mtemplate':				'../bower_components/canjs-commons/canjs-commons/mustachetemplate',
+    'basecontroller':			'../bower_components/canjs-commons/canjs-commons/basecontroller'
     },
   shim: {
-      /*'views': ['can'],*/
+   
       'can': ['jquery'],
-      'stache' : ['jquery', 'can']
+      'mtemplate' : ['jquery', 'can']
   }
 });
 define([
 	'can/view/mustache', 
-	'stache',
+	'mtemplate',
 	
 	'jquery',
 
@@ -27,7 +30,6 @@ define([
     'can/component',
     'can/control',
     'can/route',
-    //'can/view/modifiers',
     'can/map/delegate',
     'can/construct/super',
     'can/construct/proxy',
@@ -36,9 +38,7 @@ define([
     'can/map/backup',
     'can/map/define',
     'can/map/validations',
-    
-    
-    
+
     'common/common',
     'app/models',
     'app/pages',

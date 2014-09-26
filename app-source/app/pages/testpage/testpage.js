@@ -1,6 +1,6 @@
-define(['stache!app/pages/testpage/testpage.mustache'],
+define(['mtemplate!app/pages/testpage/testpage.mustache', 'basecontroller'],
 	
-function(template){
+function(template, BaseController){
 
 BaseController.extend('Page.Testpage',
 /* @Static */

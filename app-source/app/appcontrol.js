@@ -1,6 +1,6 @@
 
 define([
-         'stache!app/sitecontainer.mustache',
+         'mtemplate!app/sitecontainer.mustache',
          'can/control',
          'app/pages',
          'app/models',
@@ -16,6 +16,7 @@ define([
 			var html = template({});
 			this.element.find('body').append(html);
 			
+			new Page.Testpage(this.element.find('.page'), {}).render();
 		
 		}
 		
