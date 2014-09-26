@@ -1,12 +1,35 @@
 define([
-        'can'
+        'can',
+        'jquery'
 
-         ], function(can) {
+        ], function(can, $) {
 
 	return can.Control.extend({
 		defaults : {
 			defaultpage : 'testpage',
-			pageContainer : '#page-container'
+			pageContainer : '#page-container',
+			animate : true,
+			preAnimation : function(container){
+				var dfd = can.Deferred();
+				container.animate({
+					opacity: 0.1
+				}, 200, function() {
+					dfd.resolve();
+				});
+				return dfd.promise();
+			},
+			postAnimation : function(container){
+				var dfd = can.Deferred();
+				container.animate({
+					opacity: 1
+				}, 200, function() {
+					dfd.resolve();
+				});
+				return dfd.promise();
+			},
+			cleanupAnimation : function(container){
+				container.css({opacity: 1});
+			}
 		}
 	}, {
 		init: function(element, options) {
@@ -15,43 +38,57 @@ define([
 
 			can.route(":page/:subpage", {});
 
-			setTimeout(function() {
-				can.route.ready();
-				var page = can.route.attr('page');
-				if (page == null)
-					can.route.attr('page', self.options.defaultpage);
-			}, 1);
-
+			
+			can.route.ready();
+			var page = can.route.attr('page');
+			if (page == null)
+				can.route.attr('page', self.options.defaultpage);
+			
 
 		},
 		":page route": function(data) {
 
-			var pageName = can.capitalize(data.page);
-
-			this.navigate(pageName);
+			this.navigate(data.page);
 
 		},
 
-		
+
 
 		navigate : function(pageName){
-			var pagecontainer = $(this.options.pageContainer);
-			var self = this;
+			var pageContainer = $(this.options.pageContainer),
+			options = this.options,
+			self = this;
 
-			
-			var currentController = pagecontainer.control();
+			var currentController = pageContainer.control();
 			if (currentController) {
 				currentController.destroy();
 			}
-
-			var PageController = Page[pageName];
-			
 		
-			new PageController(pagecontainer).render();
-				
+			var PageControllerClass = Page[can.capitalize(pageName)];
+			if(!PageControllerClass){
+				console.error('Could not find page ' + pageName);
+				return;
+			}
+			
+			console.log('open ' + pageName);
 
-		},
-		"{can.route} change": function(ev, attr, how, newVal, oldVal) {}
+			var pageController = new PageControllerClass(pageContainer);
+
+			if(options.animate){
+				$.when(pageController._preRenderPhase(), options.preAnimation(pageContainer) ).done(function(){
+					pageController._postRenderPhase();
+					options.postAnimation(pageContainer);
+					console.log('rendered ' + pageName);
+				}).fail(function(){
+					options.cleanupAnimation(pageContainer);
+				})
+			}else{
+				pageController.render();
+
+			}
+
+
+		}
 
 	});
 
