@@ -1,6 +1,6 @@
 {
-  "name": "requirejs-multipage-shim-boilerplate",
-  "author": "Rob Dodson <lets.email.rob@gmail.com>",
+  "name": "canjs-requirejs",
+  "author": "Per Ehnbom <per.ehnbom@gmail.com>",
   "version": "1.0.0",
   "devDependencies": {
     "grunt-contrib-cssmin":       "latest",
