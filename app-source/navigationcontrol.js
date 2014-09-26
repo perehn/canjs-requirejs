@@ -6,7 +6,7 @@ define([
 
 	return can.Control.extend({
 		defaults : {
-			defaultpage : 'testpage',
+			defaultPage : 'testpage',
 			pageContainer : '#page-container',
 			animate : true,
 			preAnimation : function(container){
@@ -29,7 +29,8 @@ define([
 			},
 			cleanupAnimation : function(container){
 				container.css({opacity: 1});
-			}
+			},
+			urlControllerMapping : {}
 		}
 	}, {
 		init: function(element, options) {
@@ -42,43 +43,55 @@ define([
 			can.route.ready();
 			var page = can.route.attr('page');
 			if (page == null)
-				can.route.attr('page', self.options.defaultpage);
+				can.route.attr('page', self.options.defaultPage);
 			
 
 		},
+		
+		/**
+		 * Default mapping used
+		 * 
+		 * url -> PageControllerClass
+		 * #!exampleurl - Page.Exampleurl
+		 */
+
+		
 		":page route": function(data) {
 
-			this.navigate(data.page);
+			var url = data.page;
+			
+			var PageControllerClass = this.options.urlControllerMapping[url] || Page[can.capitalize(url)];
+			if(!PageControllerClass){
+				console.error('Could not find page ' + url);
+				return;
+			}
+			
+			this.openPage(PageControllerClass);
 
 		},
+		
+		
 
-
-
-		navigate : function(pageName){
+		openPage : function(PageControllerClass, pageOptions ){
 			var pageContainer = $(this.options.pageContainer),
 			options = this.options,
 			self = this;
 
+			
+			
 			var currentController = pageContainer.control();
 			if (currentController) {
 				currentController.destroy();
 			}
 		
-			var PageControllerClass = Page[can.capitalize(pageName)];
-			if(!PageControllerClass){
-				console.error('Could not find page ' + pageName);
-				return;
-			}
-			
-			console.log('open ' + pageName);
 
-			var pageController = new PageControllerClass(pageContainer);
+			var pageController = new PageControllerClass(pageContainer, pageOptions);
 
 			if(options.animate){
 				$.when(pageController._preRenderPhase(), options.preAnimation(pageContainer) ).done(function(){
 					pageController._postRenderPhase();
 					options.postAnimation(pageContainer);
-					console.log('rendered ' + pageName);
+			
 				}).fail(function(){
 					options.cleanupAnimation(pageContainer);
 				})

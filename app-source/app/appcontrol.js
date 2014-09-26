@@ -17,9 +17,9 @@ define([
 			var html = template({});
 			this.element.find('body').append(html);
 			
-			new NavigationControl(this.element, {});
-			
-			//new Page.Testpage(this.element.find('.page'), {}).render();
+			new NavigationControl(this.element, 
+					{pageContainer : '#page-container',
+					 defaultPage : 'testpage2'	});
 		
 		}
 		
