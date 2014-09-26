@@ -23,7 +23,7 @@ define([
 	'mtemplate',
 	
 	'jquery',
-
+	'canjs-commons/extensions',
     'can/util/library', 
     'can/control/route', 
     'can/model',      

@@ -1,7 +1,7 @@
 
 define([
          'mtemplate!app/sitecontainer.mustache',
-         'navigationcontrol',
+         'canjs-commons/navigationcontrol',
          'can/control',
          'app/pages',
          'app/models',
