@@ -1,5 +1,5 @@
-define(['common/common'],
-function(){
+define(['can'],
+function(can){
 
 
 can.Model.extend('TestModel',

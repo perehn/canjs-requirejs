@@ -19,10 +19,8 @@ requirejs.config({
   }
 });
 define([
-	'can/view/mustache', 
-	'mtemplate',
-	
 	'jquery',
+	'can/view/mustache', 
 	'canjs-commons/extensions',
     'can/util/library', 
     'can/control/route', 
@@ -38,10 +36,10 @@ define([
     'can/map/backup',
     'can/map/define',
     'can/map/validations',
-
-    'common/common',
-    'app/models',
-    'app/pages',
+   
+    'canjs-commons/extensions',
+    
+    
     'app/appcontrol'], function(){
 	
 });

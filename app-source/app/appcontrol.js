@@ -14,12 +14,12 @@ define([
 		init : function(){
 			var self = this;
 
-			var html = template({});
-			this.element.find('body').append(html);
+			
+			this.element.find('body').append(template({}));
 			
 			new NavigationControl(this.element, 
 					{pageContainer : '#page-container',
-					 defaultPage : 'testpage2'	});
+					 defaultPage : 'testpage'	});
 		
 		}
 		
