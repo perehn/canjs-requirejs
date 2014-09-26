@@ -1,23 +1,44 @@
-/*=============
-  Framework 7
-=============*/
 
-html,body {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-   
+* {
+	.border-box();
 }
+
+@import "mixins.less";
+
+
 body {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #000;
-    font-size: 14px;
-    line-height: 1.4;
-    width: 100%;
-    -webkit-text-size-adjust:100%;
+    color: #333;
     background: #fff;
-    overflow: hidden;
+    
+}
+
+h1{
+	text-align: center;
+	background-color: #eee;
+}
+ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.main-container{
+	.flexbox();
+	
+	> nav{
+		width: 20%;
+		padding: 20px;
+		
+		
+		h2{
+			display: block;
+		}
+	}
+	> #page-container{
+		width: 80%;
+		padding: 20px;
+	}
 }
