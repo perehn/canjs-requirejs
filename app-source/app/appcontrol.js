@@ -1,6 +1,6 @@
 
 define([
-         'mtemplate!app/sitecontainer.mustache',
+         'mtemplate!app/sitecontainer.html',
          'canjs-commons/navigationcontrol',
          
          'jquery',
@@ -23,6 +23,7 @@ define([
          'canjs-commons/extensions',
          'app/pages',
          'app/models',
+         'app/models/fixtures'
      
          ], function(template, NavigationControl) {
 	// Use Mustache and Control
@@ -37,7 +38,7 @@ define([
 			
 			new NavigationControl(this.element, {
 					pageContainer : '#page-container',
-					defaultPage : 'testpage'	
+					defaultPage : 'listpage'	
 			});
 		
 		}

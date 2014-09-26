@@ -1,9 +1,9 @@
-define(['mtemplate!app/pages/testpage2/testpage2.mustache', 
+define(['mtemplate!app/pages/listpage/listpage.html', 
         'basecontroller'],
 	
 function(template, BaseController){
 
-BaseController.extend('Page.Testpage2',
+BaseController.extend('Page.Listpage',
 /* @Static */
 {
 	
@@ -12,8 +12,14 @@ BaseController.extend('Page.Testpage2',
 {
 	template : template,
 	
+	getData : function(){
+		return {
+			items : TestModel.findAll()
+		}
+		
+	},
 	preRender : function(options){
-		console.log('prerender');
+		
 	},
 	postRender : function(options){
 	

@@ -1,3 +1,3 @@
-define(['app/pages/testpage/testpage',
-        'app/pages/testpage2/testpage2'
+define(['app/pages/listpage/listpage',
+        'app/pages/itempage/itempage'
 ], function(){})
