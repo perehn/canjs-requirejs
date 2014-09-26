@@ -1,9 +1,9 @@
-define(['mtemplate!app/pages/testpage/testpage.mustache', 
+define(['mtemplate!app/pages/testpage2/testpage2.mustache', 
         'basecontroller'],
 	
 function(template, BaseController){
 
-BaseController.extend('Page.Testpage',
+BaseController.extend('Page.Testpage2',
 /* @Static */
 {
 	

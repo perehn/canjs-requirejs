@@ -1,11 +1,12 @@
 
 define([
          'mtemplate!app/sitecontainer.mustache',
+         'navigationcontrol',
          'can/control',
          'app/pages',
          'app/models',
      
-         ], function(template) {
+         ], function(template, NavigationControl) {
 	// Use Mustache and Control
 	can.Control.extend('AppControl',{
 		
@@ -16,7 +17,9 @@ define([
 			var html = template({});
 			this.element.find('body').append(html);
 			
-			new Page.Testpage(this.element.find('.page'), {}).render();
+			new NavigationControl(this.element, {});
+			
+			//new Page.Testpage(this.element.find('.page'), {}).render();
 		
 		}
 		
