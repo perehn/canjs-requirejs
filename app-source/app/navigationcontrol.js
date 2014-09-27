@@ -7,7 +7,7 @@ define([
 
 	return can.Control.extend({
 		defaults : {
-			defaultPage : 'home',
+			defaultPage : 'listpage',
 			pageContainer : '#page-container',
 			urlControllerMapping : {}
 		}
