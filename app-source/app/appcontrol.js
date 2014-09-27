@@ -1,7 +1,7 @@
 
 define([
          'mtemplate!app/sitecontainer.html',
-         'canjs-commons/navigationcontrol',
+         'app/navigationcontrol',
          
          'jquery',
      	 'can/view/mustache', 
@@ -36,10 +36,7 @@ define([
 			
 			this.element.find('body').append(template({}));
 			
-			new NavigationControl(this.element, {
-					pageContainer : '#page-container',
-					defaultPage : 'listpage'	
-			});
+			new NavigationControl(this.element, {});
 		
 		}
 		
