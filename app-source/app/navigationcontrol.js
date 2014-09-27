@@ -36,14 +36,6 @@ define([
 		 */
 
 		":page route": function(data) {
-
-			var url = data.page;
-			
-			var PageControllerClass = this.options.urlControllerMapping[url] || Page[can.capitalize(url)];
-			if(!PageControllerClass){
-				console.error('Could not find page ' + url);
-				return;
-			}
 			
 			this.openUrl(data.page);
 
